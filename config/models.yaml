@@ -1,0 +1,13 @@
+default_model: qwen3.7-flash
+providers:
+  - name: qwen
+    type: openai_compatible       # litellm: openai/ 兼容模式
+    model: qwen3.7-flash
+    base_url_env: BASE_URL
+    api_key_env: API_KEY
+
+# ── 调优期扩展位（T 阶段启用，原型期不实现）──
+# routes:
+#   easy: qwen3.7-flash
+#   hard: deepseek-chat
+# fallback_policy: upgrade_on_low_confidence

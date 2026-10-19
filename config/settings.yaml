@@ -1,0 +1,37 @@
+app:
+  name: digital-colleague
+  log_level: INFO
+
+channel:
+  qq:
+    sandbox: false                # 白名单群走正式网关（未上线机器人仅限白名单群）
+
+ingress:
+  dedup_ttl_sec: 3600             # 去重缓存保留时长
+  session_queue_cap: 20           # 会话队列上限（背压阈值）
+  worker_pool: 4                  # 跨会话并行 Worker 数
+  coalesce_idle_sec: 2            # 连发合并：静默 2s 触发
+  coalesce_max_batch: 5           # 连发合并：最多 5 条一批
+  coalesce_window_sec: 10         # 连发合并：10s 窗口
+
+orchestrator:
+  llm_timeout_sec: 30             # LLM 调用超时
+  max_clarify_rounds: 2           # 澄清防循环上限
+
+memory:
+  top_k: 5                        # 记忆检索返回条数
+  min_confidence: 0.5             # 事实入库置信度下限
+
+tools:
+  command_timeout_sec: 30         # 命令执行超时
+
+rag:
+  top_k: 5                        # RAG 检索返回块数
+
+reply:
+  emoji: auto                     # auto | none | light（FR-38）
+  max_length: 2000                # 回复截断长度
+
+eval:
+  judge_model: qwen3.7-flash      # LLM-judge 用模型
+  emoji_normalize: true           # 判定前剥离 emoji
